@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <!-- la escala inicial en los celus tiene que empezar en 1 para que pueda verse bien y sea responsivo (tiene un zoom del 100%) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRIMER PARCIAL</title>
+
+  <link href="./img/utnLogo.png" rel="icon" type="image/png" /> <!-- ícono -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet"> <!-- fuente importada de google fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> <!-- estilos de bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"> <!-- íconos -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> <!-- para poder usar el botón de navegación en celular -->
+  <link rel="stylesheet" href="./css/style.css" /> <!-- css -->
+  <script src="./js/manejadora.js" defer></script> <!-- script -->
+
+</head>
+
+<body>
+  <!-- barra de navegacion que se expande en pantallas grandes (navbar-expand-lg)
+ tiene tema oscuro (navbar-dark) y está fija arriba (fixed-top) -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top"> 
+    <div class="container-fluid"> <!-- el contenedor para ocupar todo el ancho -->
+      <a class="navbar-brand" href="#">
+        <img src="./img/utnLogo.png" alt="Logo UTN" width="40" height="40" class="d-inline-block align-text-top me-2">
+        Pinturas UTN <!-- texto con el logo de utn a la izq -->
+      </a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span> <!-- es un botón hamburguesa para que se pueda controlar el menú en celulares -->
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav"> <!-- el menú colapsable para celulares -->
+          <li class="nav-item">
+            <a class="nav-link active" href="#" id="btnInicio">
+              <i class="bi bi-house-door me-1"></i>Inicio <!-- inicio de la pag -->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="btnAlta">
+              <i class="bi bi-plus-circle me-1"></i>Alta <!-- cargar pinturas -->
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="btnListado">
+              <i class="bi bi-list-ul me-1"></i>Listado <!-- listado de pinturas -->
+            </a>
+          </li>
+        </ul>
+
+        <button id="btnModoOscuro" class="btn btn-outline-light ms-auto"> <!-- ms-auto hace que esté a la derecha -->
+          <i class="bi bi-moon-stars"></i> <!-- botón para cambiar entre el modo claro y oscuro -->
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- contenedor principal con margin top, padding top y padding horizontal -->
+  <div class="container-fluid mt-5 pt-4 px-3">
+    <div class="row mb-3"> <!-- fila para el encabezado de la página -->
+      <div class="col">
+        <h3 class="text-center">Rodríguez Milena</h3> <!-- título centrado -->
+        <h5 class="text-center">Div. 332</h5> <!-- h3 tmb centrado -->
+      </div>
+    </div>
+
+    <!-- sección entera de bienvenida -->
+    <div id="seccionInicio">
+      <div class="descripcion"> <!-- texto dentro de la sección -->
+        <p>¡Bienvenid@! 🐇</p>
+        <p>Este programa te permite:</p>
+        <p>🌸 Agregar nuevas pinturas</p>
+        <p>🌸 Modificar pinturas existentes</p>
+        <p>🌸 Eliminar pinturas</p>
+        <p>🌸 Filtrar por marca y precio</p>
+        <p>🌸 Exportar datos a CSV</p>
+      </div>
+      
+      <!-- contenedor de los botones de navegación -->
+      <div class="botones-navegacion">
+        <button class="boton-inicio" id="btnAltaInferior">Agregar pintura</button>
+        <button class="boton-inicio" id="btnListadoInferior">Ver listado</button>
+        <button class="boton-inicio" id="btnEstadisticas">Ver estadísticas</button>
+      </div>
+    </div>
+
+    <div class="tab-content" id="myTabContent"> <!-- contenedor de las pestañas (agregar pintura, listado y estadísticas) -->
+      <!-- Pestaña del formulario de carga/modificación -->
+      <div class="tab-pane fade" id="form" role="tabpanel">
+        <div class="card h-70">
+          <div class="card-header text-white bg-dark"> <!-- encabezado oscuro con el ícono de la paleta de pintura -->
+            <h4><i class="bi bi-palette me-2"></i>Gestión de Pinturas</h4>
+          </div>
+
+          <div class="card-body">
+            <form id="frmFormulario" novalidate>
+              <div class="mb-3"> <!-- campo ID - solo lectura -->
+                <label for="inputID" class="form-label">ID:</label>
+                <input type="text" class="form-control" id="inputID" readonly style="background-color: #f8f9fa;">
+                <div id="error-id" class="invalid-feedback"></div>
+              </div>
+
+              <div class="mb-3"> <!-- campo MARCA -->
+                <label for="inputMarca" class="form-label">Marca:</label>
+                <input type="text" class="form-control" id="inputMarca" required>
+                <div id="error-marca" class="invalid-feedback"></div>
+              </div>
+
+              <div class="mb-3"> <!-- campo PRECIO con validación de rango -->
+                <label for="inputPrecio" class="form-label">Precio (USD):</label>
+                <input type="number" class="form-control" id="inputPrecio" min="50" max="500" step="50" required>
+                <div id="error-precio" class="invalid-feedback"></div>
+              </div>
+
+              <div class="mb-3"> <!-- selector de color -->
+                <label for="inputColor" class="form-label">Color:</label>
+                <input type="color" class="form-control form-control-color w-100" id="inputColor" value="#ff0000" required>
+              </div>
+
+              <div class="mb-3"> <!-- campo cantidad con validación de rango -->
+                <label for="inputCantidad" class="form-label">Cantidad:</label>
+                <input type="number" class="form-control" id="inputCantidad" min="1" max="400" required>
+                <div class="invalid-feedback">La cantidad debe ser entre 1 y 400</div>
+                <div id="error-cantidad" class="invalid-feedback"></div>
+              </div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end"> <!-- botones del formulario -->
+                <button type="button" id="btnAgregar" class="btn btn-success me-md-2">
+                  <i class="bi bi-plus-circle me-1"></i>Agregar
+                </button>
+                <button type="button" id="btnModificar" class="btn btn-primary me-md-2" style="display: none;">
+                  <i class="bi bi-pencil-square me-1"></i>Modificar
+                </button>
+                <button type="reset" id="btnLimpiar" class="btn btn-warning me-md-2">
+                  <i class="bi bi-arrow-clockwise me-1"></i>Limpiar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección del listado de pinturas -->
+      <div class="tab-pane fade" id="list" role="tabpanel">
+        <div class="card-body bg-light"> <!-- tarjeta filtrado de marca: -->
+          <div class="row align-items-center">
+            <div class="col-md-4"> <!-- columna de filtrado de marca: -->
+              <label for="inputFiltroMarca" class="form-label">Filtrar por marca:</label>
+              <input type="text" class="form-control" id="inputFiltroMarca" placeholder="Escriba la marca...">
+            </div>
+            <div class="col-md-8"> <!-- columna con los botones del filtrado -->
+              <div class="d-flex gap-2 flex-wrap mt-3 mt-md-0">
+                <button class="btn" id="btnFiltrar">
+                  <i class="bi bi-funnel me-1"></i>Filtrar
+                </button> 
+                <button class="btn" id="btnPromedio"> <!-- promedio de precios: -->
+                  <i class="bi bi-calculator me-1"></i>Ver Promedio
+                </button>
+                <button class="btn" id="btnExportar"> <!-- exportar a csv: -->
+                  <i class="bi bi-download me-1"></i>Exportar CSV
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-3"> <!-- card(tarjeta) con el listado de las pinturas: -->
+          <div class="card-header text-white bg-dark">
+            <h4><i class="bi bi-list-check me-2"></i>Listado de Pinturas</h4>
+          </div>
+          <div class="card-body">
+            <div id="divListado">
+              <!-- acá va a estar la tabla de pinturas -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="stats" role="tabpanel"> <!-- sección de estadísticas: -->
+        <div class="card mt-3">
+          <div class="card-header bg-dark text-white">
+            <h5><i class="bi bi-graph-up me-2"></i>Estadísticas</h5>
+          </div>
+          <div class="card-body">
+            <div id="divEstadisticas">
+              <div class="row">
+                <div class="col-md-6"> 
+                  <h6>Resumen General</h6> <!-- resumen: -->
+                  <div id="estadisticas-resumen"></div>
+                </div>
+                <div class="col-md-6">
+                  <h6>Pinturas Destacadas</h6> <!-- pinturas destacadas: -->
+                  <div id="estadisticas-destacados"></div>
+                </div>
+              </div>
+              <div class="mt-4">
+                <h6>Promedio por Marca</h6> <!-- gráficos de las marcas: -->
+                <div id="grafico-promedio-marca"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

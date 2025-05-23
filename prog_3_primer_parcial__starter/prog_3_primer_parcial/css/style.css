@@ -1,0 +1,384 @@
+/* aclaración: realmente, todos los estilos de dark-mode y light-mode tendrían que estar juntos y no separados,
+pero yo los terminé haciendo separados -lo cual es una mala práctica siendo que se pueden juntar y hacer el CSS más legible */
+/*también, algunos elementos tienen el !importar para forzarlo a adaptar dicho estilo si otro elemento lo tenía*/
+
+/* espaciado para el h3 -mi nombre- */
+h3 {
+
+    padding: 40px;
+}
+
+/* seccion inicio (donde explica las funcionalidades del programa y tiene los botones) */
+#seccionInicio {
+  text-align: center; /* centrado */
+  padding: 40px 20px; 
+  max-width: 800px; /* ancho máximo */
+  margin: auto; /* centrado en la pantalla */
+}
+
+/* el contenido en donde va a estar el formulario, la lista y las estadísticas 
+(tiene las mismas medidas que la sección de inicio)*/
+#myTabContent {
+  text-align: center; /* todo centrado- */
+  padding: 20px; /* espacio interno 20px */
+  max-width: 800px;
+  margin: auto; /* centrado en la pantalla */
+}
+
+/* el cuadrado que tiene la descripción del inicio "Bievenid@" */
+#seccionInicio .descripcion {
+  background-color: rgba(255, 255, 255, 0.8); /* fondo blanco */
+  padding: 25px;
+  border-radius: 20px; /* bordes redondeados */
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2); /* sombra suave */
+  border: 2px solid #FFD1DC; /* bordes rosados también */
+}
+
+#seccionInicio .descripcion p { /* el texto del cuadro de la sección inicio*/
+  font-size: 1.1rem;
+  color: #6D4C4C;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* Sección de inicio - modo oscuro */
+body.dark-mode #seccionInicio .descripcion { /* es la misma tarjeta que  #seccionInicio .descripcion, pero sus valores en modo oscuro*/
+  background-color: rgba(58, 42, 80, 0.8);
+  box-shadow: 0 6px 12px rgba(42, 1, 66, 0.4);
+  color: #e0d6eb;
+  border: 2px solid #4a3566;
+}
+
+body.dark-mode #seccionInicio .descripcion p { /* es la misma tarjeta que #seccionInicio .descripcion p, pero sus valores en modo oscuro*/
+  font-size: 1.1rem;
+  color: #fff3f3;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.botones-navegacion {
+    display: flex; /* se usa flex para poder distribuir los botones */
+    justify-content: center; /* centra los botones */
+    gap: 20px; /* espacio entre botones */
+    flex-wrap: wrap; /* permite que los botones se ajusten en las pantallas pequeñas */
+}
+
+
+#seccionInicio .boton-inicio {
+  background-color: #FFD1DC;
+  color: #6D4C4C;
+  border: none; 
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer; /* el cursor cambia a modo click */
+  transition: all 0.3s ease; /* esto es para que cuando haya un cambio no se vea brusco (como por ejemplo el hover o el transform) es progresivo y suave */
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
+  min-width: 180px; /* para que no sean tan chicos */
+}
+
+/* Botones de inicio - modo oscuro */
+body.dark-mode #seccionInicio .boton-inicio { /* es lo mismo que arriba, pero en su modo oscuro */
+  background-color: #4a3566;
+  box-shadow: 0 6px 12px rgba(42, 1, 66, 0.4);
+  color: #e0d6eb;
+}
+
+
+#seccionInicio .boton-inicio:hover { /* cuando pasa el mouse por encima */
+  background-color: #FF9BB4;
+  transform: translateY(-3px); /* el botón se va un poquito para arriba */
+  box-shadow: 0 6px 12px rgba(255, 182, 193, 0.4);
+  color: white;
+}
+
+body {
+  background-color: #FFF0F5; /* fondo blanco rosado */
+  font-family: 'Poppins', sans-serif;
+  color: #654c6d; /* texto marrón rosado */
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+body.dark-mode { /* = que arriba, pero modo oscuro */
+  background-color: #2a2139;
+  color: #e0d6eb;
+}
+
+
+/* barra de navegación */
+.navbar {
+  background-color: #FFB6C1 !important; /* rosa claro */
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
+  padding: 10px; 
+}
+
+/* barra de navegación - modo oscuro */
+body.dark-mode .navbar {
+  background-color: #3d2a54 !important;
+  box-shadow: 0 4px 15px rgba(45, 30, 70, 0.5);
+}
+
+.navbar-nav .nav-link { /* enlaces (inicio - alta - listado) */
+  background-color: #FFD1DC; /* rosa más suave */
+  color: #6D4C4C !important; /* texto */
+  margin: 0 8px;
+  padding: 10px 25px;
+  border-radius: 25px;
+  border: 2px solid #FFB6C1; /* Borde rosa */
+  transition: all 0.3s ease; /* transición para que cambios de efecto no queden tan bruscos */
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+body.dark-mode .navbar-nav .nav-link { /* enlaces (inicio - alta - listado) - modo oscuro */
+  background-color: #4a3566;
+  color: #e0d6eb !important;
+  border: 2px solid #3d2a54;
+}
+
+
+.navbar-nav .nav-link:hover {
+  background-color: #FF9BB4; /* rosa más intenso */
+  transform: translateY(-3px); /* para que cuando pasas el cursor por encima, se levante un poquito */
+  box-shadow: 0 6px 12px rgba(255, 182, 193, 0.3);
+  color: white !important;
+}
+
+.navbar-nav .nav-link.active { /* cuando estás en un apartado, queda activo "encendido" */
+  background-color: #FF9BB4; 
+  color: white !important;
+  font-weight: 600;
+}
+
+/* tarjetas */
+.card {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+  margin-bottom: 30px;
+  overflow: hidden; /* para ocultar lo que sobresalga (de igual manera podes desplazarte porque es responsive) */
+  background-color: white;
+  transition: transform 0.3s ease; /* para que los cambios que tengan se vean más suaves */
+}
+
+/* tarjetas - modo oscuro */
+body.dark-mode .card {
+  background-color: #3d2a54;
+  color: white;
+  box-shadow: 0 10px 25px rgba(19, 1, 48, 0.5);
+}
+
+/* sección de filtros */
+.card-body.bg-light {
+  background-color: #fef5f8cc !important; /* rosa más claro que el fondo */
+  border-radius: 15px;
+  border: 2px solid #FFD1DC; 
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2); 
+}
+
+/* sección de filtros - modo oscuro */
+body.dark-mode .card-body.bg-light {
+  background-color: rgba(58, 42, 80, 0.8) !important;
+  border: 2px solid #4a3566;
+  box-shadow: 0 6px 12px rgba(42, 1, 66, 0.4);
+  
+}
+
+.card:hover {
+  transform: translateY(-5px); /* cuando pasas por encima de una tarjeta, se levanta un poco también */
+}
+
+
+/* Botones */
+.btn { /* forma */
+  border-radius: 25px;
+  padding: 10px 25px;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+  margin: 8px;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
+}
+
+/* Muchos botones personalizados al mismo tiempo */
+#btnAgregar, #btnModificar, #btnLimpiar,
+#btnPromedio, #btnExportar, #btnEstadisticas, #btnFiltrar  {
+  background-color: #FFD1DC; /* Rosa suave */
+  color: #6D4C4C; /* Texto */
+}
+/* Muchos hover de botones personalizados al mismo tiempo */
+#btnAgregar:hover, #btnModificar:hover, 
+#btnLimpiar:hover, #btnPromedio:hover, 
+#btnExportar:hover, #btnEstadisticas:hover, #btnFiltrar:hover {
+  background-color: #FF9BB4; /* Rosa intenso */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(255, 182, 193, 0.4);
+  color: #e0d6eb;
+}
+
+/* boton para ver de mayor a menor el precio en listado (le quería dar un color particular distinto al resto */
+#btnPrecio {
+  background-color: #FFD1DC; 
+  color: #6D4C4C;
+}
+#btnPrecio:hover {
+  background-color: #e2879e; 
+  color: #6D4C4C; 
+}
+
+/* botones - modo oscuro */
+body.dark-mode #btnAgregar,
+body.dark-mode #btnModificar,
+body.dark-mode #btnLimpiar,
+body.dark-mode #btnPromedio,
+body.dark-mode #btnExportar,
+body.dark-mode #btnEstadisticas,
+body.dark-mode #btnFiltrar {
+  background-color: #29104a;
+  box-shadow: 0 4px 8px rgba(37, 0, 54, 0.3);
+  color: #e3d6eb;
+}
+
+body.dark-mode #btnPrecio{
+  background-color: #1b023b;
+  box-shadow: 0 4px 8px rgba(37, 0, 54, 0.3);
+  color: #e3d6eb;
+}
+body.dark-mode #btnPrecio:hover{
+  background-color: #29104a;
+  box-shadow: 0 4px 8px rgba(37, 0, 54, 0.3);
+  color: #e3d6eb;
+}
+
+/* Botón modo oscuro - la lunita */
+#btnModoOscuro {
+  background-color: #6900358e; /* color luna */
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(109, 76, 76, 0.2);
+}
+
+#btnModoOscuro:hover {
+  background-color: #690035c4; /* color luna */
+  transform: rotate(15deg); /* cuando pasas el cursor por encima, se rota 15 grados (15deg */
+}
+
+/* Botón modo claro - el solcito  */
+body.dark-mode #btnModoOscuro {
+  background-color: #16002a8e; /* color sol */
+  color: white;
+}
+
+body.dark-mode #btnModoOscuro:hover {
+  background-color: #16002aca; /* color sol */
+  color: white;
+}
+
+
+/* tabla de listado de pinturas */
+.table {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+}
+
+
+body.dark-mode .table {
+  box-shadow: 0 4px 15px rgba(18, 6, 38, 0.5); /* Sombra más fuerte */
+}
+
+
+
+/* formulario */
+.form-control {
+  border-radius: 15px;
+  border: 2px solid #FFB6C1; /* Rosa claro */
+  padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-control:focus { /* cuando le haces click, se pone un borde rosita (con sombras) */
+  border-color: #FF9BB4; 
+  box-shadow: 0 0 0 0.25rem rgba(255, 155, 180, 0.25);
+}
+
+/* Formulario - modo oscuro */
+body.dark-mode .form-control {
+  border: 2px solid #4a3566;
+  background-color: rgba(107, 69, 156, 0.8);
+  color: #e0d6eb;
+}
+
+body.dark-mode .form-control:focus { /* cuando le haces click, se pone un borde violeta (con sombras) */
+  border-color: #2f0157; 
+  box-shadow: 0 0 0 0.25rem rgba(69, 39, 106, 0.25);
+}
+
+/* alertas (cargado con exito - error) */
+.alert {
+  border-radius: 15px;
+  border-left: 5px solid;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.2);
+}
+
+.alert-success {
+  background-color: rgba(255, 214, 220, 0.9); /* Rosa claro */
+  border-left-color: #FF9BB4; /* Rosa intenso */
+  color: #6D4C4C;
+}
+
+.alert-danger {
+  background-color: rgba(255, 182, 193, 0.9); /* Rosa */
+  border-left-color: #D35D6E; /* Rosa oscuro */
+  color: white;
+}
+
+/* alertas (cargado con exito - error) - modo oscuro */
+body.dark-mode .alert-danger {
+  background-color: rgba(74, 53, 102, 0.9);
+  border-left-color: #5a417a;
+  color: white;
+}
+
+body.dark-mode .alert-success {
+  background-color: rgba(74, 53, 102, 0.9);
+  border-left-color: #5a417a;
+  color: #e0d6eb;
+}
+
+/* Placeholder*/
+#inputFiltroMarca::placeholder {
+  color: #a78a8a; /* Color rosado/marrón claro */
+}
+
+/* Placeholder - modo oscuro */
+body.dark-mode #inputFiltroMarca::placeholder { /* el texto que está sobre "escriba la marca" */
+  color: #b8a9d6; /* Morado claro legible sobre fondos oscuros */
+}
+
+/* Responsive */
+@media (max-width: 992px) { /* para pantallas chicas */
+  .col-12 { 
+    max-height: 100vh; /* limitar la altura de las columnas (para desplazamientos innecesarios) */
+  }
+  
+  .navbar-nav .nav-link { /* ajustes para la barra de navegación del celular */
+    margin-bottom: 10px; 
+    text-align: center;
+    width: 90%; /* ocupa el 90% del nav */
+    margin-left: auto; 
+    margin-right: auto;
+  }
+}
