@@ -5,12 +5,13 @@ Aplicación web desarrollada para gestionar un listado de pinturas. Permite real
 ---
 
 ## 📁 Estructura del Proyecto
-📁 /img -> Icono de la UTN
-📁 /css
-└─ style.css -> Estilos personalizados con modo oscuro
-📁 /js
-└─ manejadora.js -> Toda la lógica JS (fetch, validaciones, UI)
-📄 pintureria.html -> HTML principal con Bootstrap
+- 📁 `/img` → Icono de la UTN
+- 📁 `/css`
+  - `style.css` → Estilos personalizados con modo oscuro
+- 📁 `/js`
+  - `manejadora.js` → Toda la lógica JS (fetch, validaciones, UI)
+- 📄 `pintureria.html` → HTML principal con Bootstrap
+
 
 
 ---
@@ -34,23 +35,23 @@ Aplicación web desarrollada para gestionar un listado de pinturas. Permite real
 
 ### 🏠 Pantalla de Inicio
 
-![Inicio](./img/captura-inicio.png)
+![Inicio](img/captura-inicio.png)
 
 ### 📋 Listado con filtros
 
-![Listado](./img/captura-listado.png)
+![Listado](img/captura-listado.png)
 
 ### 📊 Estadísticas
 
-![Estadísticas](./img/captura-estadisticas.png)
+![Estadísticas](img/captura-estadisticas.png)
 
 ### 🌙 Modo noche
 
-![Modo Noche](./img/captura-noche.png)
+![Modo Noche](img/captura-noche.png)
 
 ### 📱 Diseño responsive para móviles
 
-![Celular](./img/captura-mobile.png)
+![Celular](img/captura-mobile.png)
 
 ---
 
